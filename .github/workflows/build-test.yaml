@@ -1,0 +1,29 @@
+name: DevOps CI Pipeline
+
+# 1. Trigger: Run this pipeline EVERY time someone pushes code to the main branch
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  compile-and-test:
+    # 2. Infrastructure: Rent a fresh Ubuntu Linux server from GitHub for free
+    runs-on: ubuntu-latest
+
+    steps:
+    # 3. Step One: Download your repository code onto that cloud server
+    - name: Check out repository code
+      uses: actions/checkout@v4
+
+    # 4. Step Two: Set up Node.js on that cloud server
+    - name: Set up Node.js environment
+      uses: actions/setup-node@v4
+      with:
+        node-node-version: 18
+
+    # 5. Step Three: Go into the backend folder and test if it compiles
+    - name: Install Backend Dependencies & Run Tests
+      run: |
+        cd backend
+        npm install
+        npm test
