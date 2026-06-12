@@ -22,7 +22,6 @@ RUN npm install
 COPY client/.eslintrc.cjs client/index.html client/vite.config.js ./
 COPY client/public ./public
 COPY client/src ./src
-
 ###################################################
 # Stage: client-dev
 # 
